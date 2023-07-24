@@ -1,0 +1,31 @@
+.profile__avatar-button {
+  margin: 0;
+  /* margin: 0 22px 0 0; */
+  padding: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  position: absolute;
+  z-index: 1;
+}
+.profile__avatar-button:hover {
+  background-color: black;
+  background-image: url("../../../images/karandash.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
+  /* z-index: 1; */
+  /* -webkit-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out; */
+  /* z-index: 1; */
+}
+/* @media (max-width: 768px) {
+  .profile__avatar-button {
+    margin: 0 0 10px 0;
+  }
+} */

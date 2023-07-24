@@ -1,0 +1,14 @@
+.login__button {
+  margin-top: 186px;
+  padding: 10px 20px;
+  background-color: #fff;
+  /* color: #fff; */
+  border: none;
+  cursor: pointer;
+  color: #000;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}

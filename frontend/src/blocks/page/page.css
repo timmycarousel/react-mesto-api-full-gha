@@ -1,0 +1,15 @@
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  color: #fff;
+  background-color: #000;
+  text-rendering: optimizeLegibility;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* .page_overflowed {
+  overflow: hidden;
+} */

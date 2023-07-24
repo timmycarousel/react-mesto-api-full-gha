@@ -1,0 +1,15 @@
+.element__counter-like {
+  margin: 0;
+  color: #000;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  /* margin-left: 36px; */
+  margin-top: 3px;
+  /* -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 78%;
+    padding-left: 3px; */
+}

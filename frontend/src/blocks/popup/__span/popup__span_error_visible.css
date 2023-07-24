@@ -1,0 +1,11 @@
+.popup__span_error_visible {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+  display: block;
+  margin-top: 4px;
+  /* box-sizing: border-box; */
+  min-height: 30px;
+  height: 100%;
+}

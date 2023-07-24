@@ -1,0 +1,9 @@
+.popup__field-avatar {
+  margin-top: 48px;
+}
+
+@media screen and (max-width: 879px) {
+  .popup__field-avatar {
+    margin-top: 75px;
+  }
+}
