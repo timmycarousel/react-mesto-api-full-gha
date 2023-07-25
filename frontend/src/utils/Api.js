@@ -1,9 +1,11 @@
+import { BASE_URL } from "./auth";
+
 class Api {
-  constructor(options) {
-    this.url = options.url;
-    this.headers = options.headers;
-    this.credentials = options.credentials;
-    this.authorization = options.headers["authorization"];
+  constructor(BASE_URL, credentials, headers) {
+    this.url = BASE_URL;
+    this.headers = headers;
+    this.credentials = credentials;
+    this.authorization = headers["authorization"];
   }
 
   _handleResponse(res) {
@@ -86,7 +88,7 @@ class Api {
 }
 
 const api = new Api({
-  url: "https://mesto-api.nomoredomains.xyz",
+  url: BASE_URL,
   credentials: "include",
   headers: { "Content-Type": "application/json" },
 });
