@@ -73,7 +73,7 @@ function App() {
           setImageTooltip(ok);
           setTextTooltip("Вы успешно зарегистрированы!");
           setIsTooltipPopupOpen(true);
-          navigate("/signin");
+          navigate("/sign-in");
         })
         .catch(() => {
           setImageTooltip(error);
@@ -221,7 +221,7 @@ function App() {
             />
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route
-              path="/signup"
+              path="/sign-up"
               element={
                 loggedIn ? (
                   <Navigate to="/" replace />
@@ -231,7 +231,7 @@ function App() {
               }
             />
             <Route
-              path="/signin"
+              path="/sign-in"
               element={
                 loggedIn ? (
                   <Navigate to="/" replace />
