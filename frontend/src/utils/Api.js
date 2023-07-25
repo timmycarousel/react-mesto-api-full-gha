@@ -76,7 +76,7 @@ class Api {
 }
 
 const api = new Api({
-  url: "http://localhost:3000",
+  url: "mesto-api.nomoredomains.xyz",
   headers: {
     authorization: "a0d61060-a9a4-4380-95cd-b58bf32a5ce6",
     "Content-Type": "application/json",
