@@ -2,6 +2,8 @@ class Api {
   constructor(options) {
     this.url = options.url;
     this.headers = options.headers;
+    this.credentials = options.credentials;
+    this.authorization = options.headers["authorization"];
   }
 
   _handleResponse(res) {
@@ -12,12 +14,14 @@ class Api {
   getUserInfo() {
     return fetch(this.url + "/users/me", {
       headers: this.headers,
+      credentials: this.credentials,
     }).then((res) => this._handleResponse(res));
   }
 
   getCardsFromServer() {
     return fetch(this.url + "/cards", {
       headers: this.headers,
+      credentials: this.credentials,
     }).then((res) => this._handleResponse(res));
   }
 
@@ -25,6 +29,7 @@ class Api {
     return fetch(this.url + "/users/me", {
       method: "PATCH",
       headers: this.headers,
+      credentials: this.credentials,
       body: JSON.stringify({
         about: data.info,
         name: data.name,
@@ -36,6 +41,7 @@ class Api {
     return fetch(this.url + "/cards", {
       method: "POST",
       headers: this.headers,
+      credentials: this.credentials,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -47,6 +53,7 @@ class Api {
     return fetch(this.url + "/cards/" + cardId, {
       method: "DELETE",
       headers: this.headers,
+      credentials: this.credentials,
     }).then(this._handleResponse);
   }
 
@@ -55,11 +62,13 @@ class Api {
       return fetch(this.url + "/cards/" + cardId + "/likes", {
         method: "DELETE",
         headers: this.headers,
+        credentials: this.credentials,
       }).then((res) => this._handleResponse(res));
     } else {
       return fetch(this.url + "/cards/" + cardId + "/likes", {
         method: "PUT",
         headers: this.headers,
+        credentials: this.credentials,
       }).then((res) => this._handleResponse(res));
     }
   }
@@ -68,6 +77,7 @@ class Api {
     return fetch(this.url + "/users/me/avatar", {
       method: "PATCH",
       headers: this.headers,
+      credentials: this.credentials,
       body: JSON.stringify({
         avatar: avatarLink.avatar,
       }),
@@ -76,10 +86,8 @@ class Api {
 }
 
 const api = new Api({
-  url: "mesto-api.nomoredomains.xyz",
-  headers: {
-    authorization: "a0d61060-a9a4-4380-95cd-b58bf32a5ce6",
-    "Content-Type": "application/json",
-  },
+  url: "http://localhost:5000",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
 });
 export default api;

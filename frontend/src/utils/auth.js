@@ -1,11 +1,11 @@
-export const BASE_URL = "mesto-api.nomoredomains.xyz";
+export const BASE_URL = "http://localhost:5000";
 
 // Проверка ответа от сервера
-const checkResponse = (response) => {
-  if (response.ok) {
-    return response.json();
+const checkResponse = (res) => {
+  if (res.ok) {
+    return res.json();
   }
-  return Promise.reject(`Ошибка ${response.status}`);
+  return Promise.reject(`Ошибка ${res.status}`);
 };
 
 // Регистрация пользователя
@@ -16,6 +16,7 @@ export const register = (password, email) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({ password, email }),
   }).then(checkResponse);
 };
@@ -28,20 +29,26 @@ export const authorize = (password, email) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({ password, email }),
   }).then(checkResponse);
 };
 
 // Получение пользовательского контента
-export const getContent = (token) => {
+export const getContent = ({ email, password }) => {
+  // console.log(token);
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
+    credentials: "include",
+    body: JSON.stringify({ email, password }),
   })
     .then(checkResponse)
-    .then((data) => data);
+    .then((data) => {
+      localStorage.setItem("jwt", data.token);
+      return data;
+    });
 };

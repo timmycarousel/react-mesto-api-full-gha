@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { celebrate, Joi } = require('celebrate');
+const cors = require('./middlewares/cors');
 const { auth } = require('./middlewares/auth');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
@@ -16,8 +17,10 @@ const error = require('./middlewares/error');
 const { linkRegex, emailRegex } = require('./middlewares/validation');
 
 const app = express();
+
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(cors);
 
 // Подключение к серверу MongoDB
 mongoose.connect('mongodb://localhost:27017/mestodb');
@@ -57,9 +60,9 @@ app.get('/', auth, (req, res) => {
   res.send('Привет, мир!!!!');
 });
 
-// Запуск сервера на порту 3000
-app.listen(3000, () => {
-  console.log('Сервер запущен на порту 3000');
+// Запуск сервера на порту 5000
+app.listen(5000, () => {
+  console.log('Сервер запущен на порту 5000');
 });
 
 app.use(errorLogger);

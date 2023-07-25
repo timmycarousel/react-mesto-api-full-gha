@@ -20,8 +20,7 @@ const Card = (props) => {
   }
 
   function handleDeleteClick() {
-    console.log(props.onCardDelete);
-    props.onCardDelete(props.card);
+     props.onCardDelete(props.card);
   }
 
   return (
