@@ -1,13 +1,11 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const cors = require('./cors'); // Подключение пакета cors
 const UnauthorizedError = require('../errors/unauthorized-err');
 
 const app = express();
 
 app.use(cookieParser());
-app.use(cors);
 
 // eslint-disable-next-line consistent-return
 const auth = (req, res, next) => {
