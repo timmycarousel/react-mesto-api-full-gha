@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const cors = require('cors'); // Подключение пакета cors
+const cors = require('./cors'); // Подключение пакета cors
 const UnauthorizedError = require('../errors/unauthorized-err');
 
 const app = express();
