@@ -76,7 +76,7 @@ class Api {
 }
 
 const api = new Api({
-  url: "https://nomoreparties.co/v1/cohort-64",
+  url: "http://localhost:3000",
   headers: {
     authorization: "a0d61060-a9a4-4380-95cd-b58bf32a5ce6",
     "Content-Type": "application/json",

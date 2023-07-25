@@ -58,8 +58,8 @@ app.get('/', auth, (req, res) => {
 });
 
 // Запуск сервера на порту 3000
-app.listen(3001, () => {
-  console.log('Сервер запущен на порту 3001');
+app.listen(3000, () => {
+  console.log('Сервер запущен на порту 3000');
 });
 
 app.use(errorLogger);
