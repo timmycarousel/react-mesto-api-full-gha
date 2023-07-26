@@ -70,9 +70,9 @@ sudo nano /etc/nginx/sites-available/default
 server {
         listen 80;
 
-        server_name api.deploy-webinar.nomoredomains.monster;
+        server_name api.mestoyandex.nomoreparties.sbs;
 
-        location / {
+        location /api/ {
                 proxy_pass http://localhost:3000;
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
@@ -85,43 +85,18 @@ server {
 server {
         listen 80;
 
-        server_name deploy-webinar.nomoredomains.monster; 
+        server_name mestoyandex.nomoreparties.sbs; 
 
-        root /home/aaartyukhov/deploy/todo-frontend/build;
+        root /home/timmycarousel/react-mesto-api-full-gha/frontend/build;
 
         location / {
             try_files $uri $uri/ /index.html;
         }
 } 
 
-  GNU nano 4.8                       /etc/nginx/sites-available/default                       Modified    1 server {
-  2         listen 80;
-  3
-  4         server_name mesto-api.nomoredomains.xyz;
-  5
-  6         location / {
-  7                 proxy_pass http://localhost:3001;
-  8                 proxy_http_version 1.1;
-  9                 proxy_set_header Upgrade $http_upgrade;
- 10                 proxy_set_header Connection 'upgrade';
- 11                 proxy_set_header Host $host;
- 12                 proxy_cache_bypass $http_upgrade;
- 13         }
- 14 }
- 15
- 16 server {
- 17         listen 80;
- 18
- 19         server_name mesto-api-front.nomoredomains.xyz;
- 20
- 21         root /home/timmycarousel/deploy/frontend/build;
- 22
- 23         location / {
- 24             try_files $uri $uri/ /index.html;
- 25         }
- 26 }
+  
 
-sudo chown -R $USER:www-data /home/aaartyukhov/deploy/todo-frontend/build - даем права до фронта
+sudo chown -R $USER:www-data /home/timmycarousel/react-mesto-api-full-gha/frontend/build - даем права до фронта
 
 sudo nginx -t проверяем на наличие ошибок
 sudo systemctl reload nginx   - перезапускаем сервер
