@@ -31,24 +31,29 @@ export const authorize = (password, email) => {
     },
     credentials: "include",
     body: JSON.stringify({ password, email }),
-  }).then(checkResponse);
-};
-
-// Получение пользовательского контента
-export const getContent = ({ email, password }) => {
-  // console.log(token);
-  return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-    body: JSON.stringify({ email, password }),
   })
     .then(checkResponse)
     .then((data) => {
       localStorage.setItem("jwt", data.token);
+      return data;
+    });
+};
+
+export const getContent = () => {
+  // Получение токена из локального хранилища
+  const token = localStorage.getItem("jwt");
+
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`, // Добавление токена в заголовок запроса для авторизации
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then(checkResponse)
+    .then((data) => {
       return data;
     });
 };

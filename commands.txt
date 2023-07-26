@@ -1,0 +1,140 @@
+*** создание ВМ
+
+Ubuntu 20.04:
+Intel Cascade Lake
+pbcopy < ~/.ssh/id_rsa.pub - копировать публичный ключ в буфер
+
+
+ssh timmycarousel@51.250.13.61
+
+
+*** установка NODEJS
+
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+
+sudo apt install -y nodejs 
+
+*** установка MongoDB
+
+# 1.
+curl -fsSL https://repo.mongodb.prakticum-team.ru/keys/server-4.4.asc | sudo apt-key add -
+
+# 2.
+echo "deb [ arch=amd64 ] https://repo.mongodb.prakticum-team.ru/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+
+# 3.
+sudo apt update
+
+# 4.
+sudo apt install -y mongodb-org
+
+*** стартуем MongoDB
+
+sudo service mongod start
+sudo systemctl enable mongod.service - автозапуск
+mongo - проверяем установку mongo шеллом
+
+*** установка GIT
+
+sudo apt install -y git 
+git --version 
+
+*** качаем приложение, устанавливаем зависимости, собираем проект
+
+*** установка Менеджера процессов
+
+sudo npm install pm2 -g 
+pm2 start app.js # Запускает приложение
+pm2 startup - вернет команду, выполняем ее
+pm2 save
+
+*** Регистрируем домен
+
+https://domain.nomoreparties.site/
+
+*** установка NGINX
+
+sudo apt update # обновляем список пакетов (программ), доступных для установки
+sudo apt install -y nginx # устанавливаем nginx
+sudo systemctl enable --now nginx - запускаем и добавляем в автозапуск
+
+sudo ufw allow 'Nginx Full' - настраиваем фаервол для Nginx
+sudo ufw allow OpenSSH - настраиваем фаервол для ssh
+
+*** Проверяем стартовую NGINX
+
+*** Настраиваем NGINX
+
+sudo nano /etc/nginx/sites-available/default
+
+server {
+        listen 80;
+
+        server_name api.deploy-webinar.nomoredomains.monster;
+
+        location / {
+                proxy_pass http://localhost:3000;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+        }
+}
+
+server {
+        listen 80;
+
+        server_name deploy-webinar.nomoredomains.monster; 
+
+        root /home/aaartyukhov/deploy/todo-frontend/build;
+
+        location / {
+            try_files $uri $uri/ /index.html;
+        }
+} 
+
+  GNU nano 4.8                       /etc/nginx/sites-available/default                       Modified    1 server {
+  2         listen 80;
+  3
+  4         server_name mesto-api.nomoredomains.xyz;
+  5
+  6         location / {
+  7                 proxy_pass http://localhost:3001;
+  8                 proxy_http_version 1.1;
+  9                 proxy_set_header Upgrade $http_upgrade;
+ 10                 proxy_set_header Connection 'upgrade';
+ 11                 proxy_set_header Host $host;
+ 12                 proxy_cache_bypass $http_upgrade;
+ 13         }
+ 14 }
+ 15
+ 16 server {
+ 17         listen 80;
+ 18
+ 19         server_name mesto-api-front.nomoredomains.xyz;
+ 20
+ 21         root /home/timmycarousel/deploy/frontend/build;
+ 22
+ 23         location / {
+ 24             try_files $uri $uri/ /index.html;
+ 25         }
+ 26 }
+
+sudo chown -R $USER:www-data /home/aaartyukhov/deploy/todo-frontend/build - даем права до фронта
+
+sudo nginx -t проверяем на наличие ошибок
+sudo systemctl reload nginx   - перезапускаем сервер
+
+sudo apt update
+sudo apt install -y certbot python3-certbot-nginx
+
+sudo certbot --nginx 
+sudo systemctl reload nginx Не забудьте перезапустить nginx:
+sudo certbot renew --pre-hook "service nginx stop" --post-hook "service nginx start"
+
+
+*** Дополнительно 
+git pull origin main - стягиваем изменения 
+pm2 restart app - перезапускаем приложение
+
