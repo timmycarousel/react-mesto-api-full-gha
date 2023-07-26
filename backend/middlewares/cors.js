@@ -1,10 +1,13 @@
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'api.mestoyandex.nomoreparties.sbs',
-  'mestoyandex.nomoreparties.sbs',
-  'localhost:3000',
-  'localhost:3001',
-  'localhost:5000',
+  'https://mestoyandex.nomoreparties.sbs',
+  'http://mestoyandex.nomoreparties.sbs',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:5000',
+  'https://localhost:3000',
+  'https://localhost:3001',
+  'https://localhost:5000',
 ];
 
 module.exports = (req, res, next) => {
@@ -12,7 +15,7 @@ module.exports = (req, res, next) => {
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
 
   // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
-  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS';
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
