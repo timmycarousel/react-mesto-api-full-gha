@@ -1,18 +1,19 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const cors = require('cors'); // Подключение пакета cors
 const UnauthorizedError = require('../errors/unauthorized-err');
 
 const app = express();
 
 app.use(cookieParser());
+app.use(cors);
 
 // eslint-disable-next-line consistent-return
 const auth = (req, res, next) => {
   const token = req.cookies && req.cookies.Authorization
     ? req.cookies.Authorization.replace('Bearer ', '')
     : null;
-  console.log(req.cookies);
 
   if (!token) {
     return next(new UnauthorizedError('Неверный токен авторизации'));
