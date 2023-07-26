@@ -8,10 +8,10 @@ const allowedCors = [
   'http://51.250.13.61:3000',
   'https://51.250.13.61',
   'http://51.250.13.61',
-  'https://api.mestoyandex.nomoreparties.sbs:3000',
-  'http://api.mestoyandex.nomoreparties.sbs:3000',
-  'https://api.mestoyandex.nomoreparties.sbs',
-  'http://api.mestoyandex.nomoreparties.sbs',
+  'https://mestoyandex.nomoreparties.sbs:3000',
+  'http://mestoyandex.nomoreparties.sbs:3000',
+  'https://mestoyandex.nomoreparties.sbs',
+  'http://mestoyandex.nomoreparties.sbs',
 ];
 
 module.exports = (req, res, next) => {
