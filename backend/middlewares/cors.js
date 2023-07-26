@@ -1,16 +1,10 @@
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'https://',
-  'http://api.mestoyandex.nomoreparties.sbs',
-  'https://api.mestoyandex.nomoreparties.sbs',
-  'http://mestoyandex.nomoreparties.sbs',
-  'https://mestoyandex.nomoreparties.sbs',
-  'https://localhost:3000',
-  'http://localhost:3000',
-  'https://localhost:3001',
-  'http://localhost:3001',
-  'https://localhost:5000',
-  'http://localhost:5000',
+  'api.mestoyandex.nomoreparties.sbs',
+  'mestoyandex.nomoreparties.sbs',
+  'localhost:3000',
+  'localhost:3001',
+  'localhost:5000',
 ];
 
 module.exports = (req, res, next) => {
