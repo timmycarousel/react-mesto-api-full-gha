@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "http://api.mestoyandex.nomoreparties.sbs";
 
 // Проверка ответа от сервера
 const checkResponse = (res) => {
