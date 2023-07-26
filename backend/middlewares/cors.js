@@ -1,9 +1,10 @@
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'https://mesto-api-front.nomoredomains.xyz',
-  'http://mesto-api-front.nomoredomains.xyz',
-  'https://mesto-api.nomoredomains.xyz',
-  'http://mesto-api.nomoredomains.xyz',
+  'https://',
+  'http://api.mestoyandex.nomoreparties.sbs',
+  'https://api.mestoyandex.nomoreparties.sbs',
+  'http://mestoyandex.nomoreparties.sbs',
+  'https://mestoyandex.nomoreparties.sbs',
   'https://localhost:3000',
   'http://localhost:3000',
   'https://localhost:3001',
