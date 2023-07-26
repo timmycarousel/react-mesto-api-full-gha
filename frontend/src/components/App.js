@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/Api";
 import * as auth from "../utils/auth.js";
 import Main from "./Main";
-import PageNotFound from "./PageNotFound";
+// import PageNotFound from "./PageNotFound";
 import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
