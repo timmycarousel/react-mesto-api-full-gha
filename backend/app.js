@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { celebrate, Joi } = require('celebrate');
-// const cors = require('./middlewares/cors');
-const cors = require('cors');
+const cors = require('./middlewares/cors');
+// const cors = require('cors');
 const { auth } = require('./middlewares/auth');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
@@ -22,19 +22,6 @@ const app = express();
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors);
-
-app.use((req, res, next) => {
-  res.header(
-    'Access-Control-Allow-Origin',
-    'http://mestoyandex.nomoreparties.sbs',
-  );
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept',
-  );
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  next();
-});
 
 // Подключение к серверу MongoDB
 mongoose.connect('mongodb://localhost:27017/mestodb');
