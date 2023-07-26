@@ -1,11 +1,9 @@
-import { BASE_URL } from "./auth";
-
 class Api {
-  constructor(BASE_URL, credentials, headers) {
-    this.url = BASE_URL;
-    this.headers = headers;
-    this.credentials = credentials;
-    this.authorization = headers["authorization"];
+  constructor(options) {
+    this.url = options.url;
+    this.headers = options.headers;
+    this.credentials = options.credentials;
+    this.authorization = options.headers["authorization"];
   }
 
   _handleResponse(res) {
@@ -88,7 +86,7 @@ class Api {
 }
 
 const api = new Api({
-  url: BASE_URL,
+  url: "http://localhost:5000",
   credentials: "include",
   headers: { "Content-Type": "application/json" },
 });

@@ -1,4 +1,4 @@
-export const BASE_URL = "http://mesto-api.nomoredomains.xyz";
+export const BASE_URL = "http://localhost:5000";
 
 // Проверка ответа от сервера
 const checkResponse = (res) => {
