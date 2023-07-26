@@ -1,6 +1,6 @@
 {
   "name": "mesto-timmy",
-  "homepage": "http://mestoyandex.nomoreparties.sbs/",
+  "homepage": "http://mestoyandex.nomoreparties.sbs",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
