@@ -6,12 +6,20 @@ class Api {
     this.authorization = options.headers["authorization"];
   }
 
+  setAuthorizationHeader(token) {
+    this.headers = {
+      ...this.headers,
+      Authorization: `Bearer ${token}`,
+    };
+  }
+
   _handleResponse(res) {
     if (res.ok) return res.json();
     return Promise.reject("Ошибка:" + res.status);
   }
 
   getUserInfo() {
+    this.setAuthorizationHeaders();
     return fetch(this.url + "/users/me", {
       headers: this.headers,
       credentials: this.credentials,
@@ -19,6 +27,7 @@ class Api {
   }
 
   getCardsFromServer() {
+    this.setAuthorizationHeaders();
     return fetch(this.url + "/cards", {
       headers: this.headers,
       credentials: this.credentials,
@@ -83,19 +92,14 @@ class Api {
       }),
     }).then((res) => this._handleResponse(res));
   }
-
-  setAuthorizationHeader(token) {
-    this.headers = {
-      ...this.headers,
-      Authorization: `Bearer ${token}`,
-    };
-  }
-
 }
 
 const api = new Api({
   url: "http://api.mestoyandex.nomoreparties.sbs",
   credentials: "include",
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
+    "Content-Type": "application/json",
+  },
 });
 export default api;
