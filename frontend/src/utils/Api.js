@@ -19,7 +19,7 @@ class Api {
   }
 
   getUserInfo() {
-    this.setAuthorizationHeaders();
+    this.setAuthorizationHeader();
     return fetch(this.url + "/users/me", {
       headers: this.headers,
       credentials: this.credentials,
@@ -27,7 +27,7 @@ class Api {
   }
 
   getCardsFromServer() {
-    this.setAuthorizationHeaders();
+    this.setAuthorizationHeader();
     return fetch(this.url + "/cards", {
       headers: this.headers,
       credentials: this.credentials,
