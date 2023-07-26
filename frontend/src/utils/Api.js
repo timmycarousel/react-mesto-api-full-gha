@@ -6,20 +6,12 @@ class Api {
     this.authorization = options.headers["authorization"];
   }
 
-  setAuthorizationHeader(token) {
-    this.headers = {
-      ...this.headers,
-      Authorization: `Bearer ${token}`,
-    };
-  }
-
   _handleResponse(res) {
     if (res.ok) return res.json();
     return Promise.reject("Ошибка:" + res.status);
   }
 
   getUserInfo() {
-    this.setAuthorizationHeader();
     return fetch(this.url + "/users/me", {
       headers: this.headers,
       credentials: this.credentials,
@@ -27,7 +19,6 @@ class Api {
   }
 
   getCardsFromServer() {
-    this.setAuthorizationHeader();
     return fetch(this.url + "/cards", {
       headers: this.headers,
       credentials: this.credentials,
@@ -91,6 +82,13 @@ class Api {
         avatar: avatarLink.avatar,
       }),
     }).then((res) => this._handleResponse(res));
+  }
+
+  setAuthorizationHeader(token) {
+    this.headers = {
+      ...this.headers,
+      Authorization: `Bearer ${token}`,
+    };
   }
 }
 
