@@ -83,6 +83,14 @@ class Api {
       }),
     }).then((res) => this._handleResponse(res));
   }
+
+  setAuthorizationHeader(token) {
+    this.headers = {
+      ...this.headers,
+      Authorization: `Bearer ${token}`,
+    };
+  }
+
 }
 
 const api = new Api({
