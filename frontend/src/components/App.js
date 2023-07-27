@@ -90,10 +90,8 @@ function App() {
     return auth
       .authorize(password, email)
       .then((data) => {
-        console.log("Data after login:", data);
         if (data.token) {
           localStorage.setItem("token", data.token);
-          api.setAuthorizationHeader(data.token);
           navigate("/");
           setEmailUser(email);
           setLoggedIn(true);

@@ -78,8 +78,6 @@ const login = (req, res, next) => {
 
           console.log('корректный пароль');
           console.log(`"токен"${token}`);
-          console.log('Заголовок авторизации:', req.cookies.authorization);
-          console.log('Заголовок авторизации:', req.cookie);
 
           return res.status(200).send({ token });
         });

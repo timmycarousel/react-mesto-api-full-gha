@@ -1,6 +1,8 @@
+import { BASE_URL } from "./auth";
+
 class Api {
   constructor(options) {
-    this.url = options.url;
+    this.url = BASE_URL;
     this.headers = options.headers;
     this.credentials = options.credentials;
     this.authorization = options.headers["authorization"];
@@ -83,21 +85,11 @@ class Api {
       }),
     }).then((res) => this._handleResponse(res));
   }
-
-  setAuthorizationHeader(token) {
-    this.headers = {
-      ...this.headers,
-      Authorization: `Bearer ${token}`,
-    };
-  }
 }
 
 const api = new Api({
-  url: "http://api.mestoyandex.nomoreparties.sbs",
+  url: BASE_URL,
   credentials: "include",
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
-    "Content-Type": "application/json",
-  },
+  headers: { "Content-Type": "application/json" },
 });
 export default api;
