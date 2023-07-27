@@ -1,7 +1,7 @@
 import logo from "../images/logo/header_logo.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-function Header({ loggedIn, userEmail, setLoggedIn }) {
+function Header({ loggedIn, email, setLoggedIn }) {
   // Получаем текущий путь и функцию навигации из React Router
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ function Header({ loggedIn, userEmail, setLoggedIn }) {
       <img className="header__logo" src={logo} alt="Логотип сайта" />
       <nav className="header__nav">
         {/* Выводим адрес электронной почты пользователя, если он вошел в систему */}
-        {loggedIn && <p className="header__email">{userEmail}</p>}
+        {loggedIn && <p className="header__email">{email}</p>}
         {loggedIn ? (
           /* Выводим кнопку выхода, если пользователь вошел в систему */
           <button className="header__link button" onClick={handleLogoutClick}>
