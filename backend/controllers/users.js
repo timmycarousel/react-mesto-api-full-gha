@@ -74,6 +74,7 @@ const login = (req, res, next) => {
             httpOnly: true,
             sameSite: 'strict',
             secure: false,
+            // настроить нужно https
           });
 
           console.log('корректный пароль');
