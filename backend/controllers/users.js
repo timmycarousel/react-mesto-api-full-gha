@@ -72,7 +72,7 @@ const login = (req, res, next) => {
           res.cookie('Authorization', `Bearer ${token}`, {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
-            sameSite: 'none',
+            sameSite: 'strict',
             secure: false,
           });
 
