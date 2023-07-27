@@ -6,6 +6,8 @@ const UnauthorizedError = require('../errors/unauthorized-err');
 const ConflictError = require('../errors/conflict-err');
 const BadRequestError = require('../errors/bad-request-err');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
@@ -65,7 +67,7 @@ const login = (req, res, next) => {
             throw new UnauthorizedError('Неверный логин или пароль');
           }
 
-          const token = jwt.sign({ _id: foundUser.id }, 'strong-secret', {
+          const token = jwt.sign({ _id: foundUser.id }, JWT_SECRET, {
             expiresIn: '7d',
           });
 
@@ -73,7 +75,7 @@ const login = (req, res, next) => {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
             sameSite: 'strict',
-            // secure: true,
+            secure: NODE_ENV === 'production',
             // настроить нужно https
           });
 

@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors'); // Подключение пакета cors
 const UnauthorizedError = require('../errors/unauthorized-err');
 
+const { JWT_SECRET } = process.env;
+
 const app = express();
 
 app.use(cookieParser());
@@ -22,7 +24,7 @@ const auth = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, 'strong-secret');
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     return next(new UnauthorizedError('Неверный токен авторизации'));
   }
