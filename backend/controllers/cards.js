@@ -6,6 +6,7 @@ const BadRequestError = require('../errors/bad-request-err');
 // GET /cards - возвращает все карточки
 const getCards = (req, res, next) => {
   Card.find({})
+    .sort({ createdAt: -1 })
     .then((cards) => {
       res.send(cards);
     })
@@ -63,12 +64,13 @@ const likeCard = (req, res, next) => {
     .then((card) => {
       if (!card) {
         next(new NotFoundError('Карточка не найдена'));
+        return;
       }
-      return res.status(200).json(card);
+      res.status(200).json(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Карточка не найдена'));
+        next(new BadRequestError('Переданы некорректные данные'));
       } else {
         next(err);
       }
@@ -93,7 +95,7 @@ const dislikeCard = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Карточка не найдена'));
+        next(new BadRequestError('Переданы некорректные данные'));
       } else {
         next(err);
       }

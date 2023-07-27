@@ -152,7 +152,7 @@ const updateUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Отсутствуют необходимые дагнные'));
+        next(new BadRequestError('Переданы некорректные данные'));
       } else {
         next(err);
       }

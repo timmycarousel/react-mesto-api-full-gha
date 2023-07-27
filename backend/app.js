@@ -70,10 +70,9 @@ app.get('/', auth, (req, res) => {
 app.listen(3000, () => {
   console.log('Сервер запущен на порту 3000');
 });
-
-app.use(errorLogger);
-
+app.use('/', auth);
 app.use((req, res, next) => next(new NotFoundError('Страницы по запрошенному URL не существует')));
+app.use(errorLogger);
 app.use(errors());
 app.use(error);
 

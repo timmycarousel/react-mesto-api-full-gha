@@ -52,13 +52,15 @@ function App() {
   function tokenCheck() {
     // Проверка токена в localStorage
     const token = localStorage.getItem("token");
+    const email = localStorage.getItem("userEmail");
     if (token) {
       auth
         .getContent(token)
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setEmailUser(res.data.email);
+            // setEmailUser(res.data.email);
+            setEmailUser(email);
           }
         })
         .catch((err) => console.log(err));
@@ -92,6 +94,7 @@ function App() {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
+          localStorage.setItem("userEmail", email);
           navigate("/");
           setEmailUser(email);
           setLoggedIn(true);
