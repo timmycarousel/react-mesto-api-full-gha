@@ -79,7 +79,6 @@ const login = (req, res, next) => {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
             sameSite: 'strict',
-            secure: NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
           });
 
           console.log('корректный пароль');
