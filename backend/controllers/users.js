@@ -67,16 +67,19 @@ const login = (req, res, next) => {
             throw new UnauthorizedError('Неверный логин или пароль');
           }
 
-          const token = jwt.sign({ _id: foundUser.id }, JWT_SECRET, {
-            expiresIn: '7d',
-          });
+          const token = jwt.sign(
+            { _id: foundUser.id },
+            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+            {
+              expiresIn: '7d',
+            },
+          );
 
           res.cookie('Authorization', `Bearer ${token}`, {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
             sameSite: 'strict',
-            secure: NODE_ENV === 'production',
-            // настроить нужно https
+            secure: NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
           });
 
           console.log('корректный пароль');
