@@ -95,6 +95,8 @@ function App() {
         if (data.token) {
           localStorage.setItem("token", data.token);
           localStorage.setItem("userEmail", email);
+          console.log("User email set in localStorage:", email);
+
           navigate("/");
           setEmailUser(email);
           setLoggedIn(true);
