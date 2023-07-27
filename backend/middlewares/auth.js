@@ -15,7 +15,6 @@ const auth = (req, res, next) => {
     ? req.cookies.Authorization.replace('Bearer ', '')
     : null;
 
-  console.log('Заголовок Authorization:', req.headers.authorization);
   if (!token) {
     return next(new UnauthorizedError('Неверный токен авторизации'));
   }
@@ -27,8 +26,6 @@ const auth = (req, res, next) => {
   } catch (err) {
     return next(new UnauthorizedError('Неверный токен авторизации'));
   }
-
-  console.log('Токен:', token); // Вывод токена в консоль
 
   req.user = payload;
 
