@@ -12,7 +12,7 @@ app.use(cors);
 // eslint-disable-next-line consistent-return
 const auth = (req, res, next) => {
   const token = req.cookies && req.cookies.Authorization
-    ? req.cookies.Authorization.replace('Bearer ', '')
+    ? req.cookies.Cookie.replace('Authorization=Bearer ', '')
     : null;
 
   if (!token) {
