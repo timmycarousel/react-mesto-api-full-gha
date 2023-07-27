@@ -13,6 +13,7 @@ function Header({ loggedIn, email, setLoggedIn }) {
   const handleLogoutClick = () => {
     // Удаляем токен из localStorage
     localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     // Переходим на страницу входа, заменяя текущий URL в истории
     navigate("/sign-in", { replace: true });
     // Обновляем состояние loggedIn в родительском компоненте
