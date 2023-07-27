@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.mestoyandex.nomoreparties.sbs";
+export const BASE_URL = "//api.mestoyandex.nomoreparties.sbs";
 
 // Проверка ответа от сервера
 const checkResponse = (res) => {
