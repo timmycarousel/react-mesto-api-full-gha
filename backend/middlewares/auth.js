@@ -29,7 +29,6 @@ const auth = (req, res, next) => {
   }
 
   console.log('Токен:', token); // Вывод токена в консоль
-  console.log('Пользовательские данные из токена:', payload);
 
   req.user = payload;
 

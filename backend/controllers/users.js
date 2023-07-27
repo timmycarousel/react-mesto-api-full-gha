@@ -54,7 +54,6 @@ const login = (req, res, next) => {
       }
 
       foundUser = user; // Сохранение найденного пользователя в переменную
-      console.log(foundUser);
 
       // res.clearCookie('Authorization', { httpOnly: true });
 
@@ -79,7 +78,7 @@ const login = (req, res, next) => {
 
           console.log('корректный пароль');
           console.log(`"токен"${token}`);
-          console.log(`"куки заголовок авторизации" ${res.cookie}`);
+          console.log('Заголовок авторизации:', req.headers.authorization);
 
           return res.status(200).send({ token });
         });
