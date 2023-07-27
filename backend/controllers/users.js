@@ -77,6 +77,7 @@ const login = (req, res, next) => {
           });
 
           console.log('корректный пароль');
+          console.log(`токен ${token}`);
 
           return res.status(200).send({ token });
         });
